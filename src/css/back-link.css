@@ -1,29 +1,59 @@
-.back-link {
-  position: relative;
-  display: inline-block;
-  padding: 4px 8px;
-  margin-top: 32px;
-  border: 1px solid;
-  border-radius: 8px;
+form.form {
+  max-width: 320px;
+ margin-left: 0;
+  padding: 15px;
+  border: 2px solid #000;
+  border-radius: 6px;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  box-sizing: border-box;
 }
-.back-link::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 16px;
-  height: 16px;
 
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z'/%3E%3C/svg%3E");
-  transition: 300ms ease-in;
-  transition-property: opacity;
-  opacity: 0;
-  animation: slide 500ms linear infinite alternate-reverse both;
-  animation-play-state: paused;
+form.form label,
+form.form fieldset {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #000;
 }
-.back-link:hover::before {
-  opacity: 1;
-  animation-play-state: running;
+
+form.form input[type="number"] {
+  width: 100%;
+  padding: 6px 10px;
+  font-size: 18px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+form.form fieldset {
+  border: 2px solid #000;
+  border-radius: 4px;
+  padding: 10px 15px;
+}
+
+form.form legend {
+  font-weight: 700;
+  font-size: 16px;
+  padding: 0 5px;
+}
+
+form.form input[type="radio"] {
+  margin-right: 8px;
+}
+
+form.form button[type="submit"] {
+  padding: 8px 20px;
+  font-size: 16px;
+  border: 2px solid #000;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 4px;
+}
+
+form.form button[type="submit"]:hover {
+  background-color: #e6e6e6;
 }
