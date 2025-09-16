@@ -11,9 +11,9 @@ export default defineConfig(({ command }) => {
       sourcemap: true,
       rollupOptions: {
         input: [
-          ...glob.sync('./src/*.html'),
-          './src/1‑timer.html',
-          './src/2‑snackbar.html',
+          ...glob.sync('./*.html'),
+          './1‑timer.html',
+          './2‑snackbar.html',
         ],
         output: {
           manualChunks(id) {
@@ -40,7 +40,7 @@ export default defineConfig(({ command }) => {
     },
     plugins: [
       injectHTML(),
-      FullReload(['./src/**/*.html']),
+      FullReload(['./**/*.html']),
       SortCss({
         sort: 'mobile-first',
       }),
