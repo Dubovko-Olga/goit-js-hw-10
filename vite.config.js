@@ -12,8 +12,8 @@ export default defineConfig(({ command }) => {
       rollupOptions: {
         input: [
           ...glob.sync('./*.html'),
-          './1‑timer.html',
-          './2‑snackbar.html',
+          './1-timer.html',
+          './2-snackbar.html',
         ],
         output: {
           manualChunks(id) {
