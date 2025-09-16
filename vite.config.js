@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { glob } from 'glob';
+import { resolve } from 'path';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
@@ -10,29 +11,10 @@ export default defineConfig(({ command }) => {
     build: {
       sourcemap: true,
       rollupOptions: {
-        input: [
-          ...glob.sync('./*.html'),
-          './1-timer.html',
-          './2-snackbar.html',
-        ],
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              return 'vendor';
-            }
-          },
-          entryFileNames: chunkInfo => {
-            if (chunkInfo.name === 'commonHelpers') {
-              return 'commonHelpers.js';
-            }
-            return '[name].js';
-          },
-          assetFileNames: assetInfo => {
-            if (assetInfo.name && assetInfo.name.endsWith('.html')) {
-              return '[name].[ext]';
-            }
-            return 'assets/[name]-[hash][extname]';
-          },
+        input: {
+          timer: resolve(__dirname, 'src/1-timer.html'),
+          snackbar: resolve(__dirname, 'src/2-snackbar.html'),
+         
         },
       },
       outDir: '../dist',
@@ -40,13 +22,10 @@ export default defineConfig(({ command }) => {
     },
     plugins: [
       injectHTML(),
-      FullReload(['./**/*.html']),
+      FullReload(['./src/**/*.html']),
       SortCss({
         sort: 'mobile-first',
       }),
     ],
-    css: {
-     
-    },
   };
 });
