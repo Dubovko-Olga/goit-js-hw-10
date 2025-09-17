@@ -1,2 +1,0 @@
-import{i as r}from"./iziToast.min-DBF0ZtTP.js";const s=document.querySelector(".form");s.addEventListener("submit",e=>{e.preventDefault();const i=Number(s.elements.delay.value),o=s.elements.state.value;l(i,o).then(t=>{r.success({title:"✅ Fulfilled",message:`Fulfilled promise in ${t}ms`,position:"topRight"})}).catch(t=>{r.error({title:"❌ Rejected",message:`Rejected promise in ${t}ms`,position:"topRight"})}),s.reset()});function l(e,i){return new Promise((o,t)=>{setTimeout(()=>{i==="fulfilled"?o(e):t(e)},e)})}
-//# sourceMappingURL=snackbar-CBpPK_AN.js.map
