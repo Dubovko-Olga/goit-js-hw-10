@@ -3,6 +3,7 @@ import { glob } from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
+import path from 'path';
 
 export default defineConfig(({ command }) => {
   return {
@@ -12,8 +13,11 @@ export default defineConfig(({ command }) => {
     root: 'src',
     build: {
       sourcemap: true,
+      outDir: '../dist',
+      emptyOutDir: true,
       rollupOptions: {
-        input: glob.sync('./src/*.html'),
+       input: glob.sync('src/*.html').map(file => path.relative(process.cwd(), file)),
+ 
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
@@ -34,15 +38,16 @@ export default defineConfig(({ command }) => {
           },
         },
       },
-      outDir: '../dist',
-      emptyOutDir: true,
     },
     plugins: [
       injectHTML(),
-      FullReload(['./src/**/**.html']),
+      FullReload(['./src/**/*.html']),
       SortCss({
         sort: 'mobile-first',
       }),
     ],
+    optimizeDeps: {
+      include: ['izitoast', 'flatpickr'],
+    },
   };
 });
